@@ -73,7 +73,7 @@ void menu()
 void inicializar()
 {
 
-	// se a lista já possuir elementos
+	// se a lista jï¿½ possuir elementos
 	// libera a memoria ocupada
 	NO* aux = primeiro;
 	while (aux != NULL) {
@@ -143,20 +143,61 @@ void inserirElemento()
 	}
 }
 
-void excluirElemento()
-{
+void excluirElemento() { 
+	int excluir;
+	cout << "Usuario, digite o elemento que deseja exluir da lista"; \endl
+	cin >> excluir
+
+	if (posicaoElemento(excluir) == NULL) {
+        cout << "Elemento nao foi encontrado" << \endl
+
+	}
+
+    else {
+        
+		NO* atual = primeiro; 
+		NO* anterior = NULL;
+		NO* proximo = NULL;
+
+		while (atual != NULL) {
+			if (atual->valor == excluir) {
+				proximo = atual->prox;
+				break;
+			}
+			anterior = atual;
+			atual = atual->prox;		}
+		if (anterior != NULL) {
+			anterior->prox = atual->prox;
+
+		}
+		if (primeiro->valor == excluir) {
+			primeiro = proximo;
+		}
+		free(atual);
 	
+	}
 }
 
 void buscarElemento()
 {
-	
+    int buscar;
+
+    cout << "Qual elemento deseja buscar?\n";
+    cin >> buscar;
+
+    if (posicaoElemento(buscar) != NULL) {
+        cout << "O elemento foi encontrado! "; \endl
+        }
+
+    else {
+            cout << "O elemento nao foi encontrado"; \endl
+        }
+
 }
 
 
-
 // retorna um ponteiro para o elemento buscado
-// ou NULL se o elemento não estiver na lista
+// ou NULL se o elemento nï¿½o estiver na lista
 NO* posicaoElemento(int numero)
 {
 	NO* aux = primeiro;
